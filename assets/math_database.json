@@ -1,0 +1,824 @@
+[
+  {
+    "topic": "Place Value",
+    "level": "L1",
+    "question": "Write the number 83,405 in words.",
+    "answer": "Eighty-three thousand, four hundred and five"
+  },
+  {
+    "topic": "Place Value",
+    "level": "L1",
+    "question": "What is the value of the digit 7 in the number 127,914?",
+    "answer": "7000"
+  },
+  {
+    "topic": "Place Value",
+    "level": "L1",
+    "question": "Write the number 'two million, four hundred and fifty thousand' in digits.",
+    "answer": "2450000"
+  },
+  {
+    "topic": "Greater or Less Than",
+    "level": "L1",
+    "question": "Insert the correct symbol (< or >) between these numbers: 812,000 ___ 821,000",
+    "answer": "<"
+  },
+  {
+    "topic": "Greater or Less Than",
+    "level": "L1",
+    "question": "Which number is smaller: 19,405 or 19,045?",
+    "answer": "19,045"
+  },
+  {
+    "topic": "Negative Numbers",
+    "level": "L1",
+    "question": "What is the difference between 9 and -3?",
+    "answer": "12"
+  },
+  {
+    "topic": "Negative Numbers",
+    "level": "L1",
+    "question": "What is the difference between -4 and -10?",
+    "answer": "6"
+  },
+  {
+    "topic": "Temperature",
+    "level": "L1",
+    "question": "The temperature in London is -2°C in the morning. By the afternoon, it rises by 7 degrees. What is the new temperature?",
+    "answer": "5°C"
+  },
+  {
+    "topic": "Temperature",
+    "level": "L1",
+    "question": "Moscow has a temperature of -8°C and Berlin is 3°C. What is the difference in temperature between the two cities?",
+    "answer": "11"
+  },
+  {
+    "topic": "Temperature",
+    "level": "L1",
+    "question": "Put these temperatures in order starting with the warmest: -4°C, 7°C, -1°C, 0°C, 3°C",
+    "answer": "7°C, 3°C, 0°C, -1°C, -4°C"
+  },
+  {
+    "topic": "Money",
+    "level": "L1",
+    "question": "David has £25 in his bank account. He pays a phone bill of £40. Use a negative number to show his new bank balance.",
+    "answer": "-£15"
+  },
+  {
+    "topic": "Money",
+    "level": "L1",
+    "question": "Account A has a balance of -£45. Account B has a balance of £12. How much more money is in Account B than Account A?",
+    "answer": "£57"
+  },
+  {
+    "topic": "Practical Contexts",
+    "level": "L1",
+    "question": "A diver is exploring a reef at -12 metres. She swims up 5 metres towards the surface. What is her new depth?",
+    "answer": "-7 metres"
+  },
+  {
+    "topic": "Practical Contexts",
+    "level": "L1",
+    "question": "A small business starts the month with a balance of -£300. They make a profit of £850 that month. What is their new balance?",
+    "answer": "£550"
+  },
+  {
+    "topic": "Addition",
+    "level": "L1",
+    "question": "A charity raised £1,450 on Friday, £2,800 on Saturday, and £4,200 on Sunday. What is the total amount raised over the weekend?",
+    "answer": "£8450"
+  },
+  {
+    "topic": "Subtraction",
+    "level": "L1",
+    "question": "A local gym has a maximum capacity of 350 members. There are currently 218 registered members. How many more members can join?",
+    "answer": "132"
+  },
+  {
+    "topic": "Multiplication",
+    "level": "L1",
+    "question": "Sarah buys 4 coffees every week. How many coffees does she buy in a full year? (52 weeks in a year).",
+    "answer": "208"
+  },
+  {
+    "topic": "Long Multiplication",
+    "level": "L1",
+    "question": "A wholesale box contains 24 chocolate bars. A shop orders 65 boxes. How many chocolate bars is this in total?",
+    "answer": "1560"
+  },
+  {
+    "topic": "Division",
+    "level": "L1",
+    "question": "A company end-of-year bonus of £125,500 is shared equally among 25 employees. How much does each employee receive?",
+    "answer": "£5020"
+  },
+  {
+    "topic": "Division (Grouping)",
+    "level": "L1",
+    "question": "A school is taking 420 students on a trip. If each coach holds 50 students, how many coaches are needed to ensure everyone has a seat?",
+    "answer": "9"
+  },
+  {
+    "topic": "Mixed Operations",
+    "level": "L1",
+    "question": "A holiday camp needs 1 instructor for every 12 teenagers, and 1 instructor for every 8 younger children. How many instructors are needed for 60 teenagers and 40 younger children?",
+    "answer": "10"
+  },
+  {
+    "topic": "Multiply by 10/100",
+    "level": "L1",
+    "question": "Multiply 45 by 100.",
+    "answer": "4500"
+  },
+  {
+    "topic": "Divide by 10/100",
+    "level": "L1",
+    "question": "Divide 320 by 10.",
+    "answer": "32"
+  },
+  {
+    "topic": "Divide by 10/100",
+    "level": "L1",
+    "question": "A piece of wood is 850cm long. It needs to be divided into 100 equal pieces. How long will each piece be?",
+    "answer": "8.5cm"
+  },
+  {
+    "topic": "Multiples",
+    "level": "L1",
+    "question": "Which of these numbers is a multiple of 6: 14, 18, 22, 26?",
+    "answer": "18"
+  },
+  {
+    "topic": "Square Numbers",
+    "level": "L1",
+    "question": "What is the square of 5? (5²)",
+    "answer": "25"
+  },
+  {
+    "topic": "Ratio and Proportion",
+    "level": "L1",
+    "question": "A decorator mixes blue and white paint in the ratio 3:1. If he uses 4 tins of white paint, how many tins of blue paint does he need?",
+    "answer": "12"
+  },
+  {
+    "topic": "Ratio and Proportion",
+    "level": "L1",
+    "question": "A recipe for 8 pancakes requires 200g of flour. How much flour is needed to make 24 pancakes?",
+    "answer": "600g"
+  },
+  {
+    "topic": "Ratio and Proportion",
+    "level": "L1",
+    "question": "Plant food instructions say 'mix 2 caps of liquid feed with 5 litres of water'. How many caps of liquid feed should be used for 15 litres of water?",
+    "answer": "6"
+  },
+  {
+    "topic": "Simplifying Ratios",
+    "level": "L1",
+    "question": "A class has 30 students. 18 are girls and 12 are boys. What is the ratio of girls to boys in its simplest form?",
+    "answer": "3:2"
+  },
+  {
+    "topic": "Simplifying Ratios",
+    "level": "L1",
+    "question": "A fruit bowl contains 20 pieces of fruit. 8 are apples and the rest are oranges. What is the ratio of oranges to apples in its simplest form?",
+    "answer": "3:2"
+  },
+  {
+    "topic": "Simplifying Ratios",
+    "level": "L1",
+    "question": "Simplify the ratio 40:60.",
+    "answer": "2:3"
+  },
+  {
+    "topic": "Simplifying Ratios",
+    "level": "L1",
+    "question": "A factory employs 250 staff. 50 are managers, 150 are assembly workers, and the rest are drivers. What is the ratio of managers to assembly workers to drivers in its simplest form?",
+    "answer": "1:3:1"
+  },
+  {
+    "topic": "Simplifying Ratios",
+    "level": "L1",
+    "question": "Simplify the ratio 15:10:25.",
+    "answer": "3:2:5"
+  },
+  {
+    "topic": "Rounding",
+    "level": "L1",
+    "question": "Round 84 to the nearest 10.",
+    "answer": "80"
+  },
+  {
+    "topic": "Rounding",
+    "level": "L1",
+    "question": "Round 376 to the nearest 10.",
+    "answer": "380"
+  },
+  {
+    "topic": "Rounding",
+    "level": "L1",
+    "question": "Round 649 to the nearest 100.",
+    "answer": "600"
+  },
+  {
+    "topic": "Rounding",
+    "level": "L1",
+    "question": "Round 1,852 to the nearest 100.",
+    "answer": "1900"
+  },
+  {
+    "topic": "Rounding",
+    "level": "L1",
+    "question": "Round 7,499 to the nearest 1000.",
+    "answer": "7000"
+  },
+  {
+    "topic": "Rounding",
+    "level": "L1",
+    "question": "Round 4,600,000 to the nearest million.",
+    "answer": "5,000,000"
+  },
+  {
+    "topic": "Estimation",
+    "level": "L1",
+    "question": "Estimate the answer to 198 x 41 by rounding both numbers to the nearest 10.",
+    "answer": "8000"
+  },
+  {
+    "topic": "Estimation",
+    "level": "L1",
+    "question": "Estimate the answer to 312 x 19 by rounding to the nearest 10.",
+    "answer": "6200"
+  },
+  {
+    "topic": "Estimation (Practical Context)",
+    "level": "L1",
+    "question": "A school buys 4 desks costing £48 each. By rounding the cost to the nearest £10, estimate the total price.",
+    "answer": "£200"
+  },
+  {
+    "topic": "Estimation (Practical Context)",
+    "level": "L1",
+    "question": "A baker sells about 195 loaves of bread a day. He works 5 days a week. Estimate how many loaves he sells in a week by rounding 195 to the nearest 100.",
+    "answer": "1000"
+  },
+  {
+    "topic": "Estimation (Practical Context)",
+    "level": "L1",
+    "question": "Sarah buys 3 pairs of shoes for £19.50 each. She estimates the total will be less than £50. Is her estimation correct?",
+    "answer": "No"
+  },
+  {
+    "topic": "Comparing Fractions",
+    "level": "L1",
+    "question": "Which fraction is larger: 1/3 or 1/5?",
+    "answer": "1/3"
+  },
+  {
+    "topic": "Comparing Fractions",
+    "level": "L1",
+    "question": "Put these fractions in order from smallest to largest: 1/2, 1/8, 1/4.",
+    "answer": "1/8, 1/4, 1/2"
+  },
+  {
+    "topic": "Equivalent Fractions",
+    "level": "L1",
+    "question": "Which of these fractions is equivalent to 1/3: 2/5, 3/9, or 4/10?",
+    "answer": "3/9"
+  },
+  {
+    "topic": "Equivalent Fractions",
+    "level": "L1",
+    "question": "Simplify the fraction 15/20 to its lowest terms.",
+    "answer": "3/4"
+  },
+  {
+    "topic": "Mixed Numbers",
+    "level": "L1",
+    "question": "Convert the mixed number 2 1/4 into an improper fraction.",
+    "answer": "9/4"
+  },
+  {
+    "topic": "Improper Fractions",
+    "level": "L1",
+    "question": "Convert the improper fraction 14/5 into a mixed number.",
+    "answer": "2 4/5"
+  },
+  {
+    "topic": "Fractions of a Quantity",
+    "level": "L1",
+    "question": "What is 1/4 of £60?",
+    "answer": "£15"
+  },
+  {
+    "topic": "Fractions of a Quantity",
+    "level": "L1",
+    "question": "What is 2/3 of 90kg?",
+    "answer": "60kg"
+  },
+  {
+    "topic": "Fractions of a Quantity (Context)",
+    "level": "L1",
+    "question": "A cinema has 120 seats. 3/4 of the seats are occupied. How many seats are occupied?",
+    "answer": "90"
+  },
+  {
+    "topic": "Fractions of a Quantity (Context)",
+    "level": "L1",
+    "question": "A baker makes 80 cupcakes. 2/5 of them are chocolate. How many chocolate cupcakes are there?",
+    "answer": "32"
+  },
+  {
+    "topic": "Ordering Decimals",
+    "level": "L1",
+    "question": "Put these numbers in order, starting with the smallest: 0.25, 2.50, 0.52, 0.135, 5.2",
+    "answer": "0.135, 0.25, 0.52, 2.50, 5.2"
+  },
+  {
+    "topic": "Adding Decimals (Money)",
+    "level": "L1",
+    "question": "A customer buys a coffee for £2.45, a sandwich for £3.15, and a cookie for £0.90. What is the total cost?",
+    "answer": "£6.50"
+  },
+  {
+    "topic": "Subtracting Decimals",
+    "level": "L1",
+    "question": "A piece of fabric is 15.75 metres long. A tailor cuts off 4.25 metres. How much fabric is left?",
+    "answer": "11.5 metres"
+  },
+  {
+    "topic": "Multiplying Decimals",
+    "level": "L1",
+    "question": "Multiply 3.4 by 5.",
+    "answer": "17"
+  },
+  {
+    "topic": "Dividing Decimals",
+    "level": "L1",
+    "question": "A 12.6 kg bag of flour is divided equally into 3 smaller containers. How much flour goes into each container?",
+    "answer": "4.2 kg"
+  },
+  {
+    "topic": "Multiply by 10/100 (Decimals)",
+    "level": "L1",
+    "question": "Multiply 4.75 by 100.",
+    "answer": "475"
+  },
+  {
+    "topic": "Divide by 10/100 (Decimals)",
+    "level": "L1",
+    "question": "Divide 52.8 by 10.",
+    "answer": "5.28"
+  },
+  {
+    "topic": "Rounding Decimal Places",
+    "level": "L1",
+    "question": "Round 24.681 to 1 decimal place.",
+    "answer": "24.7"
+  },
+  {
+    "topic": "Rounding Decimal Places",
+    "level": "L1",
+    "question": "Round 8.349 to 2 decimal places.",
+    "answer": "8.35"
+  },
+  {
+    "topic": "Significant Figures",
+    "level": "L1",
+    "question": "Round 458.2 to 2 significant figures.",
+    "answer": "460"
+  },
+  {
+    "topic": "Percentage Parts",
+    "level": "L1",
+    "question": "In a survey, 72% of people said their favourite pet is a dog. What percentage of people chose a different pet?",
+    "answer": "28%"
+  },
+  {
+    "topic": "Finding Percentages",
+    "level": "L1",
+    "question": "What is 10% of £350?",
+    "answer": "£35"
+  },
+  {
+    "topic": "Finding Percentages",
+    "level": "L1",
+    "question": "Find 25% of 80 kg.",
+    "answer": "20 kg"
+  },
+  {
+    "topic": "Percentage Decrease",
+    "level": "L1",
+    "question": "A jacket normally costs £60. In a sale, it has a 20% discount. How much money do you save?",
+    "answer": "£12"
+  },
+  {
+    "topic": "Percentage Decrease",
+    "level": "L1",
+    "question": "A television costs £400. It is reduced by 25% in a sale. What is the new price?",
+    "answer": "£300"
+  },
+  {
+    "topic": "Percentage Increase",
+    "level": "L1",
+    "question": "An employee earns £250 a week. They receive a 10% pay rise. What is their new weekly wage?",
+    "answer": "£275"
+  },
+  {
+    "topic": "Equivalencies",
+    "level": "L1",
+    "question": "Convert the fraction 3/4 into a percentage.",
+    "answer": "75%"
+  },
+  {
+    "topic": "Equivalencies",
+    "level": "L1",
+    "question": "Write 45% as a decimal.",
+    "answer": "0.45"
+  },
+  {
+    "topic": "Equivalencies",
+    "level": "L1",
+    "question": "Convert 0.8 into a fraction in its simplest form.",
+    "answer": "4/5"
+  },
+  {
+    "topic": "Using a Calculator (Fractions)",
+    "level": "L1",
+    "question": "Use a calculator to convert 3/8 into a decimal.",
+    "answer": "0.375"
+  },
+  {
+    "topic": "Using a Calculator (Fractions)",
+    "level": "L1",
+    "question": "Use a calculator to convert 5/6 into a decimal. Round your answer to 3 decimal places.",
+    "answer": "0.833"
+  },
+  {
+    "topic": "Using a Calculator (Percentages)",
+    "level": "L1",
+    "question": "Use a calculator to find 17% of 450.",
+    "answer": "76.5"
+  },
+  {
+    "topic": "Using a Calculator (Percentages)",
+    "level": "L1",
+    "question": "Use a calculator to find 65% of £8.40.",
+    "answer": "£5.46"
+  },
+  {
+    "topic": "Calculator Word Problems",
+    "level": "L1",
+    "question": "A laptop was bought for £850. It was later sold for 45% of its original price. Using a calculator, work out how much it was sold for.",
+    "answer": "£382.50"
+  },
+  {
+    "topic": "Calculator Word Problems",
+    "level": "L1",
+    "question": "A family books a holiday costing £1,240. They must pay a 15% deposit. How much is the deposit?",
+    "answer": "£186"
+  },
+  {
+    "topic": "Rounding Calculator Displays",
+    "level": "L1",
+    "question": "After doing a calculation, your calculator shows the result 415.8888. Round this number to 2 decimal places.",
+    "answer": "415.89"
+  },
+  {
+    "topic": "Rounding Calculator Displays",
+    "level": "L1",
+    "question": "A calculator displays 92.45. Round this number to 1 decimal place.",
+    "answer": "92.5"
+  },
+  {
+    "topic": "Money (Calculating Change)",
+    "level": "L1",
+    "question": "A customer buys a sandwich for £3.45, a bottle of water for £1.20, and a bag of crisps for £0.85. They pay with a £10 note. How much change should they receive?",
+    "answer": "£4.50"
+  },
+  {
+    "topic": "Money",
+    "level": "L1",
+    "question": "Calculate the total cost of these items: £14.50, £3.25, and £0.99.",
+    "answer": "£18.74"
+  },
+  {
+    "topic": "Date Formats",
+    "level": "L1",
+    "question": "Write the date '14th of August 2024' in the short format dd/mm/yy.",
+    "answer": "14/08/24"
+  },
+  {
+    "topic": "Date Formats",
+    "level": "L1",
+    "question": "What date is represented by the short format 05/11/2023?",
+    "answer": "5th of November 2023"
+  },
+  {
+    "topic": "12 and 24 Hour Clock",
+    "level": "L1",
+    "question": "Convert 4:15 p.m. into 24-hour clock time.",
+    "answer": "16:15"
+  },
+  {
+    "topic": "12 and 24 Hour Clock",
+    "level": "L1",
+    "question": "Convert 09:45 into 12-hour clock time (remember to include a.m. or p.m.).",
+    "answer": "9:45 a.m."
+  },
+  {
+    "topic": "Time Duration",
+    "level": "L1",
+    "question": "A train departs at 10:25 and arrives at its destination at 12:10. How long did the journey take in hours and minutes?",
+    "answer": "1 hour 45 minutes"
+  },
+  {
+    "topic": "Adding Time",
+    "level": "L1",
+    "question": "A film starts at 19:30 and lasts for 110 minutes. What time does the film finish? Give your answer in 24-hour clock format.",
+    "answer": "21:20"
+  },
+  {
+    "topic": "Converting Time Units",
+    "level": "L1",
+    "question": "Convert 3 hours and 20 minutes into minutes.",
+    "answer": "200 minutes"
+  },
+  {
+    "topic": "Converting Time Units",
+    "level": "L1",
+    "question": "A marathon runner completes a race in 215 minutes. Convert this time into hours and minutes.",
+    "answer": "3 hours 35 minutes"
+  },
+  {
+    "topic": "Length",
+    "level": "L1",
+    "question": "Convert 4500 millimetres into metres.",
+    "answer": "4.5 m"
+  },
+  {
+    "topic": "Length",
+    "level": "L1",
+    "question": "A piece of wood is 2.5 metres long. How many centimetres is this?",
+    "answer": "250 cm"
+  },
+  {
+    "topic": "Capacity",
+    "level": "L1",
+    "question": "A punch bowl holds 1.25 litres of juice. How many millilitres is this?",
+    "answer": "1250 ml"
+  },
+  {
+    "topic": "Capacity",
+    "level": "L1",
+    "question": "Add 350 ml and 1.4 litres. Give your total answer in millilitres.",
+    "answer": "1750 ml"
+  },
+  {
+    "topic": "Weight",
+    "level": "L1",
+    "question": "Convert 3250 grams into kilograms.",
+    "answer": "3.25 kg"
+  },
+  {
+    "topic": "Weight",
+    "level": "L1",
+    "question": "A parcel weighs 4.5 kg. A second parcel weighs 800 g. What is their total weight in kilograms?",
+    "answer": "5.3 kg"
+  },
+  {
+    "topic": "Temperature",
+    "level": "L1",
+    "question": "What is the freezing point of water in degrees Celsius?",
+    "answer": "0°C"
+  },
+  {
+    "topic": "Temperature",
+    "level": "L1",
+    "question": "The temperature is -4°C in the morning and rises by 9°C by midday. What is the new temperature?",
+    "answer": "5°C"
+  },
+  {
+    "topic": "Distance and Scales",
+    "level": "L1",
+    "question": "On a map, the scale is 1 cm to 1 km. If two towns are 8.5 cm apart on the map, what is the actual distance between them?",
+    "answer": "8.5 km"
+  },
+  {
+    "topic": "Distance and Scales",
+    "level": "L1",
+    "question": "A distance chart shows the distance from Manchester to London is 208 miles. If a delivery driver makes a round trip (there and back), what is the total distance covered?",
+    "answer": "416 miles"
+  },
+  {
+    "topic": "Perimeter",
+    "level": "L1",
+    "question": "A rectangular garden is 12m long and 8m wide. What is the perimeter of the garden?",
+    "answer": "40m"
+  },
+  {
+    "topic": "Area",
+    "level": "L1",
+    "question": "A living room floor measures 6m by 4m. What is the area of the floor?",
+    "answer": "24 square metres"
+  },
+  {
+    "topic": "Area (Contextual Cost)",
+    "level": "L1",
+    "question": "A rectangular patio is 5m long and 4m wide. Paving slabs cost £15 per square metre. How much will it cost to pave the entire patio?",
+    "answer": "£300"
+  },
+  {
+    "topic": "Perimeter (Contextual Cost)",
+    "level": "L1",
+    "question": "A school needs to put a fence around a rectangular playground that is 45m long and 30m wide. Fencing costs £5 per metre. How much will the fencing cost?",
+    "answer": "£750"
+  },
+  {
+    "topic": "Area",
+    "level": "L1",
+    "question": "Calculate the area of a rectangular banner that is 2.5 metres long and 1.2 metres wide.",
+    "answer": "3 square metres"
+  },
+  {
+    "topic": "Perimeter",
+    "level": "L1",
+    "question": "A square picture frame has a side length of 45cm. What is the total perimeter of the frame?",
+    "answer": "180cm"
+  },
+  {
+    "topic": "Volume",
+    "level": "L1",
+    "question": "A storage box is 2m long, 1.5m wide, and 1m high. What is its volume?",
+    "answer": "3 cubic metres"
+  },
+  {
+    "topic": "Volume",
+    "level": "L1",
+    "question": "A rectangular cake tin is 20cm long, 15cm wide, and 5cm deep. Calculate the volume of the tin.",
+    "answer": "1500 cubic centimetres"
+  },
+  {
+    "topic": "Volume (Contextual)",
+    "level": "L1",
+    "question": "A builder digs a rectangular trench that is 6m long, 2m wide, and 1m deep. How many cubic metres of earth were removed?",
+    "answer": "12 cubic metres"
+  },
+  {
+    "topic": "Volume (Unit Conversion)",
+    "level": "L1",
+    "question": "A wooden crate is 2m long, 1m wide, and 50cm high. Convert the height to metres first, then calculate its volume in cubic metres.",
+    "answer": "1 cubic metre"
+  },
+  {
+    "topic": "Volume (Contextual)",
+    "level": "L1",
+    "question": "A swimming pool is 15m long, 8m wide, and 2m deep. Calculate the maximum volume of water the pool can hold.",
+    "answer": "240 cubic metres"
+  },
+  {
+    "topic": "Volume",
+    "level": "L1",
+    "question": "Calculate the volume of a delivery van's cargo space if it measures 4m long, 2m wide, and 2m high.",
+    "answer": "16 cubic metres"
+  },
+  {
+    "topic": "Angles",
+    "level": "L1",
+    "question": "Two angles in a triangle are 45° and 65°. What is the size of the third angle?",
+    "answer": "70°"
+  },
+  {
+    "topic": "Angles",
+    "level": "L1",
+    "question": "Three angles in a quadrilateral measure 90°, 110°, and 85°. What is the size of the fourth angle?",
+    "answer": "75°"
+  },
+  {
+    "topic": "Angles",
+    "level": "L1",
+    "question": "How many degrees are there in a right angle?",
+    "answer": "90°"
+  },
+  {
+    "topic": "Symmetry",
+    "level": "L1",
+    "question": "How many lines of symmetry does a standard square have?",
+    "answer": "4"
+  },
+  {
+    "topic": "Symmetry",
+    "level": "L1",
+    "question": "Which of these capital letters has exactly one vertical line of symmetry: A, S, Z, F?",
+    "answer": "A"
+  },
+  {
+    "topic": "Tessellation",
+    "level": "L1",
+    "question": "Which of these shapes will NOT tessellate (fit together without leaving gaps): Square, Rectangle, Regular Hexagon, or Circle?",
+    "answer": "Circle"
+  },
+  {
+    "topic": "Scale Drawings",
+    "level": "L1",
+    "question": "A floor plan uses a scale of 1 cm to 2 metres. If a living room measures 4 cm by 3 cm on the plan, what are its actual dimensions in metres?",
+    "answer": "8m by 6m"
+  },
+  {
+    "topic": "Scale Drawings",
+    "level": "L1",
+    "question": "On a map, 1 cm represents 5 km. If two towns are 6.5 cm apart on the map, what is the actual distance between them?",
+    "answer": "32.5 km"
+  },
+  {
+    "topic": "Mean",
+    "level": "L1",
+    "question": "A student scored the following marks in five spelling tests: 12, 15, 18, 14, and 16. Calculate the mean score.",
+    "answer": "15"
+  },
+  {
+    "topic": "Mean",
+    "level": "L1",
+    "question": "The daily temperatures recorded over four days were 18°C, 21°C, 19°C, and 22°C. What is the mean temperature?",
+    "answer": "20°C"
+  },
+  {
+    "topic": "Range",
+    "level": "L1",
+    "question": "A shop sells five different laptops with the following prices: £250, £420, £310, £199, and £550. What is the range of the laptop prices?",
+    "answer": "£351"
+  },
+  {
+    "topic": "Range",
+    "level": "L1",
+    "question": "The number of customers visiting a cafe over a week is recorded as: 45, 62, 58, 40, 71, 85, and 50. Calculate the range of customers.",
+    "answer": "45"
+  },
+  {
+    "topic": "Extracting Data (Timetables)",
+    "level": "L1",
+    "question": "A bus timetable shows departures at 09:15, 09:45, 10:15, and 10:45. If a passenger arrives at the bus stop at 09:50, what time is the next bus?",
+    "answer": "10:15"
+  },
+  {
+    "topic": "Extracting Data (Bar Charts)",
+    "level": "L1",
+    "question": "A bar chart shows the number of cars sold in a month. The bar for 'Red' cars reaches 25, and the bar for 'Blue' cars reaches 15. How many more red cars were sold than blue cars?",
+    "answer": "10"
+  },
+  {
+    "topic": "Tally and Frequency",
+    "level": "L1",
+    "question": "In a tally chart, the category for 'Walking to work' has three groups of five tally marks and two single tally marks. What is the total frequency for this category?",
+    "answer": "17"
+  },
+  {
+    "topic": "Extracting Data (Pie Charts)",
+    "level": "L1",
+    "question": "A pie chart represents the favourite sports of 40 students. The section for 'Football' takes up exactly half of the pie chart. How many students chose football?",
+    "answer": "20"
+  },
+  {
+    "topic": "Extracting Data (Line Graphs)",
+    "level": "L1",
+    "question": "A line graph shows a patient's temperature. At 2 p.m. it was 38.5°C and at 4 p.m. it was 37.2°C. By how much did the temperature drop?",
+    "answer": "1.3°C"
+  },
+  {
+    "topic": "Probability Scale",
+    "level": "L1",
+    "question": "If an event is absolutely certain to happen, what number represents its probability?",
+    "answer": "1"
+  },
+  {
+    "topic": "Probability (Fractions)",
+    "level": "L1",
+    "question": "A bag contains 4 red counters, 3 blue counters, and 3 green counters. What is the probability of picking a red counter? Give your answer as a fraction.",
+    "answer": "4/10 (or 2/5)"
+  },
+  {
+    "topic": "Probability (Numbers)",
+    "level": "L1",
+    "question": "A fair spinner has sections numbered 1 to 8. What is the probability of spinning a number greater than 5? Give your answer as a fraction.",
+    "answer": "3/8"
+  },
+  {
+    "topic": "Probability (Equivalencies)",
+    "level": "L1",
+    "question": "The probability of a train arriving late is 0.15. What is this probability written as a percentage?",
+    "answer": "15%"
+  },
+  {
+    "topic": "Probability (Equivalencies)",
+    "level": "L1",
+    "question": "There is a 50% chance of a coin landing on heads. Write this probability as a decimal.",
+    "answer": "0.5"
+  },
+  {
+    "topic": "Probability from Data",
+    "level": "L1",
+    "question": "A cafe recorded that out of 100 customers, 20 ordered tea. What is the probability that a customer chosen at random ordered tea? Give your answer as a fraction in its simplest form.",
+    "answer": "1/5"
+  }
+]

@@ -1,0 +1,39 @@
+name: functional_math_ai
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  http: ^1.6.0
+  path_provider: ^2.1.5
+  share_plus: ^7.2.1  # 🛠️ Handles the native share menu for your exported Word documents
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/math_database.json
+    - assets/scheme_of_learning.json
+    - assets/icon/MathAI.png  # 🖼️ Updated path mapping
+
+# 🛠️ Launcher Icon Tool Path Alignment
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/icon/MathAI.png"  # 🛠️ Fixed to look inside the icon folder
+  adaptive_icon_background: "#003cb4"
+  adaptive_icon_foreground: "assets/icon/MathAI.png" # 🛠️ Fixed here too
