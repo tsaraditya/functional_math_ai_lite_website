@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'dart:math';
-import 'dart:io';
+import 'dart:io' show Directory, File;
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+
+// 🌐 Conditional styling imports to handle raw browser elements safely
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:universal_html/html.dart' as web_html;
 
 void main() {
   runApp(const MathAIApp());
@@ -87,7 +91,6 @@ class _SyllabusScreenState extends State<SyllabusScreen> {
       );
       final dynamic decodedData = json.decode(response);
       setState(() {
-        // 🛠️ Structural type fix protecting release builds from generic Map crashes
         _syllabusData = Map<String, dynamic>.from(decodedData);
       });
     } catch (e) {
@@ -190,8 +193,6 @@ class _QuizScreenState extends State<QuizScreen> {
   String _exportStatusMessage = "";
 
   final String _aiUrl = 'https://api.groq.com/openai/v1/chat/completions';
-
-  // 🔐 Correct mapping template: Reads key injected via command line variables switch on build execution
   final String _apiKey = const String.fromEnvironment('GROQ_API_KEY');
   final String _modelName = 'llama-3.3-70b-versatile';
 
@@ -264,12 +265,12 @@ class _QuizScreenState extends State<QuizScreen> {
             {
               "role": "system",
               "content":
-                  "You are an official UK Functional Skills Mathematics Level 1 exam writer. Every time you are called, you must generate a completely unique, highly unpredictable exam paper that is entirely unrelated in narrative setting, individual character names, and word phrasing to any exam you have generated previously. You must return a valid json object containing a single root key named 'questions' which maps directly to an array of exactly 17 objects. Each question object must contain exactly these keys: 'id' (int), 'topic' (string), 'question' (string), and 'answer' (string).\n\nCRITICAL EXAM RULES:\n1. Generate exactly 17 questions covering distinct topics (Money, Area, Perimeter, Volume, Mean, Range, Fractions, Percentages, Decimals, Ratio, Simple Probability, Time, Charts, Weight/Length conversion, Scaling, Negative numbers, and Estimation).\n2. Every question must be a realistic, multi-sentence real-life word problem. Completely switch up the backdrops across unique commercial, professional, and domestic environments. For this unique runtime instance, pull contextual settings and thematic scenarios heavily from the parameters of: $freshContextSeed.\n3. DO NOT reuse any character names, company branding titles, or narrative frames across questions to maintain full storyline independence.\n4. Use raw, unrounded figures reflecting everyday scenarios (e.g., £16.34, 7.2m, 480g) instead of clean rounded numbers like 10 or 50, unless the topic explicitly demands estimation calculations.\n\nExpected layout: {\"questions\": [{\"id\": 1, \"topic\": \"Money\", \"question\": \"text\", \"answer\": \"text\"}]}",
+                  "You are an official UK Functional Skills Mathematics Level 1 exam writer. Return a valid json object containing a single root key named 'questions' which maps directly to an array of exactly 17 objects. Each question object must contain exactly these keys: 'id' (int), 'topic' (string), 'question' (string), and 'answer' (string). CRITICAL: Use only single quotes (') inside the text values; never use unescaped double quotes (\") which destroy JSON encoding structural arrays. Settings seed context backdrop environment: $freshContextSeed.",
             },
           ],
           "response_format": {"type": "json_object"},
-          "temperature": 0.78,
-          "max_tokens": 3000,
+          "temperature": 0.72,
+          "max_tokens": 3600,
         }),
       );
 
@@ -313,13 +314,11 @@ class _QuizScreenState extends State<QuizScreen> {
     });
 
     try {
-      // 1. Generate unique file name identities
       final String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
       final String filename = includeAnswersOnly
           ? "Exam_Answers_$timestamp.doc"
           : "Exam_Questions_$timestamp.doc";
 
-      // 2. Build the Document HTML payload data string
       StringBuffer htmlContent = StringBuffer();
       htmlContent.writeln("<html><body>");
       htmlContent.writeln(
@@ -349,17 +348,33 @@ class _QuizScreenState extends State<QuizScreen> {
       }
       htmlContent.writeln("</body></html>");
 
-      // 3. Save to a safe cache sandbox path inside application container storage
+      // 🌐 WEB ROUTINE DETECTOR: Bypasses Android paths to drop files cleanly via the browser engine
+      if (kIsWeb) {
+        final bytes = utf8.encode(htmlContent.toString());
+        final blob = web_html.Blob([bytes], 'application/msword');
+        final url = web_html.Url.createObjectUrlFromBlob(blob);
+
+        web_html.AnchorElement(href: url)
+          ..setAttribute("download", filename)
+          ..click();
+
+        web_html.Url.revokeObjectUrl(url);
+
+        setState(() {
+          _exportStatusMessage = "Document downloaded successfully.";
+        });
+        return;
+      }
+
+      // 📱 NATIVE PHONE DETECTOR: Runs the traditional cache sandbox save if compiled onto an Android device
       final Directory tempDir = await getTemporaryDirectory();
       final File file = File('${tempDir.path}/$filename');
       await file.writeAsString(htmlContent.toString());
 
-      // 4. 🚀 Trigger the native OS share window sheet layer safely
       setState(() {
         _exportStatusMessage = "Launching system share pipeline...";
       });
 
-      // Import note: Add 'import 'package:share_plus/share_plus.dart';' at the very top of your main.dart file!
       await Share.shareXFiles(
         [XFile(file.path, mimeType: 'application/msword')],
         text: includeAnswersOnly
@@ -424,7 +439,7 @@ class _QuizScreenState extends State<QuizScreen> {
         });
       }
     } catch (e) {
-      // Catch loop
+      // Catch context loop
     } finally {
       setState(() {
         _isLoadingHint = false;
