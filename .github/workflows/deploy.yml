@@ -1,0 +1,40 @@
+name: Deploy Flutter Web App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Triggers automation every time you push to the main branch
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Source Code
+        uses: actions/checkout@v4
+
+      - name: Set Up Java Environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+
+      - name: Set Up Flutter Framework SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install Project Dependencies
+        run: flutter pub get
+
+      - name: Compile Production Web Bundles
+        run: |
+          flutter build web --release --base-href "/functional_math_ai_lite_website/" --dart-define=GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}
+
+      - name: Deploy Live Assets to GitHub Pages Branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/web
+          branch: gh-pages # Automatically creates and updates this hosting branch securely
