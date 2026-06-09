@@ -32,8 +32,12 @@ class MathAIApp extends StatelessWidget {
   }
 }
 
-// 👑 GLOBAL STATE NAVIGATION ROUTER LIST
-final List<Widget> _screens = [const SyllabusScreen(), const QuizScreen()];
+// 👑 GLOBAL STATE NAVIGATION ROUTER LIST - Updated to include Chat!
+final List<Widget> _screens = [
+  const SyllabusScreen(),
+  const QuizScreen(),
+  const ChatBotScreen(), // 🌟 Added chatbot screen instance inside the global router
+];
 
 class MainAppScreen extends StatefulWidget {
   const MainAppScreen({super.key});
@@ -62,6 +66,10 @@ class _MainAppScreenState extends State<MainAppScreen> {
             icon: Icon(Icons.psychology),
             label: 'AI Tutor',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.chat),
+            label: 'AI Chat',
+          ), // 🌟 Interactive Chat selector tab
         ],
       ),
     );
@@ -739,6 +747,227 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// 🌟 LIVE AI CHATBOT INTERACTIVE TUTORIAL WIDGET
+class ChatBotScreen extends StatefulWidget {
+  const ChatBotScreen({super.key});
+
+  @override
+  State<ChatBotScreen> createState() => _ChatBotScreenState();
+}
+
+class _ChatBotScreenState extends State<ChatBotScreen> {
+  final TextEditingController _messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  final List<Map<String, String>> _messages = [
+    {
+      "role": "assistant",
+      "content":
+          "Hello! I am your Functional Skills Math AI Tutor. Ask me any math question, or paste a problem you're stuck on, and let's solve it step-by-step! 🧠",
+    },
+  ];
+
+  bool _isAiTyping = false;
+  final String _aiUrl = 'https://api.groq.com/openai/v1/chat/completions';
+  final String _apiKey = const String.fromEnvironment('GROQ_API_KEY');
+  final String _modelName = 'llama-3.3-70b-versatile';
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  Future<void> _sendChatMessage() async {
+    final String userText = _messageController.text.trim();
+    if (userText.isEmpty) return;
+
+    if (_apiKey.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "API compilation Key Missing. Inject variable token via --dart-define.",
+          ),
+        ),
+      );
+      return;
+    }
+
+    _messageController.clear();
+    setState(() {
+      _messages.add({"role": "user", "content": userText});
+      _isAiTyping = true;
+    });
+    _scrollToBottom();
+
+    try {
+      List<Map<String, String>> conversationPayload = [
+        {
+          "role": "system",
+          "content":
+              "You are an expert UK Functional Skills Mathematics Level 1 classroom teacher. Your job is to guide students kindly through mathematical processes. Never give the answer immediately; instead, break calculation steps down, prompt the user with questions, explain practical real-world math logic (Area, Money, Fractions, Scale), and keep explanations incredibly clear and accessible.",
+        },
+        ..._messages,
+      ];
+
+      final response = await http.post(
+        Uri.parse(_aiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $_apiKey',
+        },
+        body: jsonEncode({
+          "model": _modelName,
+          "messages": conversationPayload,
+          "temperature": 0.5,
+          "max_tokens": 800,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = jsonDecode(response.body);
+        final String aiReply = data['choices'][0]['message']['content'].trim();
+
+        setState(() {
+          _messages.add({"role": "assistant", "content": aiReply});
+        });
+      } else {
+        setState(() {
+          _messages.add({
+            "role": "assistant",
+            "content":
+                "Sorry, I hit an internal transmission error. Please try asking again.",
+          });
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _messages.add({
+          "role": "assistant",
+          "content":
+              "Network disruption encountered. Check internet configurations.",
+        });
+      });
+    } finally {
+      setState(() {
+        _isAiTyping = false;
+      });
+      _scrollToBottom();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Math AI Chat Tutor',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              padding: const EdgeInsets.all(16),
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final message = _messages[index];
+                final bool isUser = message['role'] == 'user';
+
+                return Align(
+                  alignment: isUser
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.75,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isUser ? Colors.deepPurple : Colors.grey.shade200,
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(16),
+                        topRight: const Radius.circular(16),
+                        bottomLeft: Radius.circular(isUser ? 16 : 0),
+                        bottomRight: Radius.circular(isUser ? 0 : 16),
+                      ),
+                    ),
+                    child: Text(
+                      message['content'] ?? '',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: isUser ? Colors.white : Colors.black87,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          if (_isAiTyping)
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                "AI Tutor is typing operational sequence...",
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 4,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    onSubmitted: (_) => _sendChatMessage(),
+                    decoration: const InputDecoration(
+                      hintText:
+                          'Ask a math question (e.g., How do I find a mean average?)...',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.send, color: Colors.deepPurple),
+                  onPressed: _sendChatMessage,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
