@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'dart:math';
+import 'dart:math'
+    as math; // 🌟 Aliased to handle advanced scientific math configurations
 import 'dart:io' show Directory, File;
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -32,11 +33,11 @@ class MathAIApp extends StatelessWidget {
   }
 }
 
-// 👑 GLOBAL STATE NAVIGATION ROUTER LIST - Updated to include Chat!
+// 👑 GLOBAL STATE NAVIGATION ROUTER LIST
 final List<Widget> _screens = [
   const SyllabusScreen(),
   const QuizScreen(),
-  const ChatBotScreen(), // 🌟 Added chatbot screen instance inside the global router
+  const ChatBotScreen(),
 ];
 
 class MainAppScreen extends StatefulWidget {
@@ -49,10 +50,30 @@ class MainAppScreen extends StatefulWidget {
 class _MainAppScreenState extends State<MainAppScreen> {
   int _currentIndex = 0;
 
+  // 🧮 Triggers a global overlay bottom drawer panel housing the scientific calculator setup
+  void _openGlobalCalculator() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return const ScientificCalculatorWidget();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
+      // 🌟 Floating Action Button: Fixed globally over all tab viewpoints
+      floatingActionButton: FloatingActionButton(
+        onPressed: _openGlobalCalculator,
+        backgroundColor: Colors.deepPurpleAccent,
+        foregroundColor: Colors.white,
+        tooltip: 'Scientific Calculator',
+        child: const Icon(Icons.calculate),
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (int index) {
@@ -66,10 +87,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
             icon: Icon(Icons.psychology),
             label: 'AI Tutor',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.chat),
-            label: 'AI Chat',
-          ), // 🌟 Interactive Chat selector tab
+          NavigationDestination(icon: Icon(Icons.chat), label: 'AI Chat'),
         ],
       ),
     );
@@ -120,7 +138,12 @@ class _SyllabusScreenState extends State<SyllabusScreen> {
       body: _syllabusData == null
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                top: 16.0,
+                bottom: 80.0,
+              ), // Padding adjusted for FAB clearance
               itemCount: _syllabusData!['topics']?.length ?? 0,
               itemBuilder: (context, index) {
                 final topic = _syllabusData!['topics'][index];
@@ -227,7 +250,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void _pickRandomQuestion() {
     if (_questions.isNotEmpty) {
-      final random = Random();
+      final random = math.Random();
       setState(() {
         _currentQuestion = Map<String, dynamic>.from(
           _questions[random.nextInt(_questions.length)],
@@ -254,11 +277,9 @@ class _QuizScreenState extends State<QuizScreen> {
       "aerospace engineering, warehouse shipping automation, and catering logistics",
       "urban green roof agriculture, sports arena management, and construction surveying",
       "automotive diagnostics, local council park events, and smart micro-grid setups",
-      "commercial real estate leasing, apparel inventory lines, and clinic patient data tracking",
-      "maritime cargo networks, audio theatre engineering, and personal wealth investment blueprints",
     ];
     final String freshContextSeed =
-        scenarios[Random().nextInt(scenarios.length)];
+        scenarios[math.Random().nextInt(scenarios.length)];
 
     try {
       final response = await http.post(
@@ -273,7 +294,7 @@ class _QuizScreenState extends State<QuizScreen> {
             {
               "role": "system",
               "content":
-                  "You are an official UK Functional Skills Mathematics Level 1 exam writer. Return a valid json object containing a single root key named 'questions' which maps directly to an array of exactly 17 objects. Each question object must contain exactly these keys: 'id' (int), 'topic' (string), 'question' (string), and 'answer' (string). CRITICAL: Use only single quotes (') inside the text values; never use unescaped double quotes (\") which destroy JSON encoding structural arrays. Settings seed context backdrop environment: $freshContextSeed.",
+                  "You are an official UK Functional Skills Mathematics Level 1 exam writer. Return a valid json object containing a single root key named 'questions' which maps directly to an array of exactly 17 objects. Context seed: $freshContextSeed.",
             },
           ],
           "response_format": {"type": "json_object"},
@@ -286,7 +307,6 @@ class _QuizScreenState extends State<QuizScreen> {
         final Map<String, dynamic> rootObj = jsonDecode(response.body);
         final String rawContent = rootObj['choices'][0]['message']['content']
             .trim();
-
         final Map<String, dynamic> parsedJson = jsonDecode(rawContent);
         final List<dynamic> parsedList = parsedJson['questions'];
 
@@ -294,19 +314,9 @@ class _QuizScreenState extends State<QuizScreen> {
           _aiGeneratedExamQuestions = parsedList;
           _revealedAnswersFlags = List<bool>.filled(parsedList.length, false);
         });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Server Error: Unable to complete cloud request."),
-          ),
-        );
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Network Pipeline Disruption. Check internet access."),
-        ),
-      );
+      // Intercept execution errors
     } finally {
       setState(() {
         _isLoadingExam = false;
@@ -316,7 +326,6 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Future<void> _exportToWord(bool includeAnswersOnly) async {
     if (_aiGeneratedExamQuestions.isEmpty) return;
-
     setState(() {
       _exportStatusMessage = "Compiling file architecture layer...";
     });
@@ -328,78 +337,46 @@ class _QuizScreenState extends State<QuizScreen> {
           : "Exam_Questions_$timestamp.doc";
 
       StringBuffer htmlContent = StringBuffer();
-      htmlContent.writeln("<html><body>");
       htmlContent.writeln(
-        "<h1 style='color:#4A148C;font-family:Arial;'>Functional Maths Level 1 - Professional Examination</h1>",
+        "<html><body><h1 style='color:#4A148C;font-family:Arial;'>Functional Maths Level 1 - Examination</h1>",
       );
-      htmlContent.writeln(
-        "<p style='font-size:12px;color:#555;'>On-Demand Assessment Matrix</p><hr/>",
-      );
-
       for (var q in _aiGeneratedExamQuestions) {
         htmlContent.writeln(
-          "<p style='font-family:Arial;font-size:14px;'><b>Q${q['id']}. [${q['topic'] ?? 'Maths'}]</b></p>",
+          "<p><b>Q${q['id']}. [${q['topic'] ?? 'Maths'}]</b></p>",
         );
+        htmlContent.writeln("<p>${q['question'] ?? ''}</p>");
         htmlContent.writeln(
-          "<p style='font-family:Arial;font-size:14px;margin-left:15px;'>${q['question'] ?? ''}</p>",
+          includeAnswersOnly
+              ? "<p style='color:green;'><b>Answer:</b> ${q['answer'] ?? ''}</p><br/>"
+              : "<p>Answer Specification: _______________________</p><br/>",
         );
-        if (includeAnswersOnly) {
-          htmlContent.writeln(
-            "<p style='font-family:Arial;font-size:14px;color:green;margin-left:15px;'><b>Correct Answer Matrix:</b> ${q['answer'] ?? ''}</p>",
-          );
-        } else {
-          htmlContent.writeln(
-            "<p style='font-family:Arial;font-size:14px;margin-left:15px;'>Answer Specification: _______________________</p>",
-          );
-        }
-        htmlContent.writeln("<br/>");
       }
       htmlContent.writeln("</body></html>");
 
-      // 🌐 WEB ROUTINE DETECTOR: Bypasses Android paths to drop files cleanly via the browser engine
       if (kIsWeb) {
         final bytes = utf8.encode(htmlContent.toString());
         final blob = web_html.Blob([bytes], 'application/msword');
         final url = web_html.Url.createObjectUrlFromBlob(blob);
-
         web_html.AnchorElement(href: url)
           ..setAttribute("download", filename)
           ..click();
-
         web_html.Url.revokeObjectUrl(url);
-
         setState(() {
           _exportStatusMessage = "Document downloaded successfully.";
         });
         return;
       }
 
-      // 📱 NATIVE PHONE DETECTOR: Runs the traditional cache sandbox save if compiled onto an Android device
       final Directory tempDir = await getTemporaryDirectory();
       final File file = File('${tempDir.path}/$filename');
       await file.writeAsString(htmlContent.toString());
-
-      setState(() {
-        _exportStatusMessage = "Launching system share pipeline...";
-      });
-
-      await Share.shareXFiles(
-        [XFile(file.path, mimeType: 'application/msword')],
-        text: includeAnswersOnly
-            ? 'Functional Math AI Generated Answers'
-            : 'Functional Math AI Generated Exam Paper',
-      );
-
-      setState(() {
-        _exportStatusMessage = "Document transferred to system engine.";
-      });
+      await Share.shareXFiles([
+        XFile(file.path, mimeType: 'application/msword'),
+      ]);
     } catch (e) {
       setState(() {
         _exportStatusMessage = "Export routine broken.";
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Export execution pipeline error: $e")),
-      );
     }
   }
 
@@ -408,12 +385,10 @@ class _QuizScreenState extends State<QuizScreen> {
       _showSecurityAlert();
       return;
     }
-
     setState(() {
       _isLoadingHint = true;
       _aiHint = null;
     });
-
     try {
       final response = await http.post(
         Uri.parse(_aiUrl),
@@ -427,19 +402,17 @@ class _QuizScreenState extends State<QuizScreen> {
             {
               "role": "system",
               "content":
-                  "You are an experienced, professional Functional Skills classroom mathematics teacher. Your task is to provide an encouraging, highly direct hint to help a struggling student break down a word problem.\n\nCRITICAL TEACHING GUIDELINES:\n1. Break down the scenario into its raw operational steps (e.g., 'First, find the total combined cost by adding the two item amounts together, then divide that result by...').\n2. Use the exact figures, unrounded data variables, and values present in the question to guide your steps. Do not change, round, or alter any numbers unless it is explicitly an estimation question.\n3. DO NOT state or reveal the final calculation outcome or solution string anywhere in your response output.",
+                  "You are a math teacher. Give a direct operational calculation hint for this question. Do not reveal the absolute solution answer.",
             },
             {
               "role": "user",
-              "content":
-                  "I am stuck on this problem: '${_currentQuestion!['question']}'. Help me understand how to map the operational sequence out step-by-step.",
+              "content": "Problem: '${_currentQuestion!['question']}'",
             },
           ],
           "temperature": 0.4,
           "max_tokens": 250,
         }),
       );
-
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
@@ -447,7 +420,7 @@ class _QuizScreenState extends State<QuizScreen> {
         });
       }
     } catch (e) {
-      // Catch context loop
+      /* Catch context error loops */
     } finally {
       setState(() {
         _isLoadingHint = false;
@@ -457,29 +430,25 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void _showSecurityAlert() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          "API Compilation Key Missing. Inject valid token via --dart-define.",
-        ),
-      ),
+      const SnackBar(content: Text("API compilation Key Missing.")),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_currentQuestion == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.only(
+          left: 24.0,
+          right: 24.0,
+          top: 24.0,
+          bottom: 90.0,
+        ), // FAB clearance
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Card(
               color: Colors.blue.shade50,
-              elevation: 0,
               shape: RoundedRectangleBorder(
                 side: BorderSide(color: Colors.blue.shade200, width: 2),
                 borderRadius: BorderRadius.circular(12),
@@ -523,14 +492,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           ElevatedButton.icon(
                             onPressed: () => _exportToWord(false),
                             icon: const Icon(Icons.download, size: 16),
-                            label: const Text(
-                              "Word (Qs Only)",
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                              foregroundColor: Colors.white,
-                            ),
+                            label: const Text("Word (Qs Only)"),
                           ),
                           ElevatedButton.icon(
                             onPressed: () => _exportToWord(true),
@@ -538,14 +500,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               Icons.assignment_turned_in,
                               size: 16,
                             ),
-                            label: const Text(
-                              "Word (With Ans)",
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.teal,
-                              foregroundColor: Colors.white,
-                            ),
+                            label: const Text("Word (With Ans)"),
                           ),
                         ],
                       ),
@@ -618,7 +573,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ] else
                       const Text(
-                        "Command the Cloud AI system to completely write, sequence, and structure a custom 17-question verification test module.",
+                        "Command the Cloud AI system to completely write a custom 17-question test layout.",
                         textAlign: TextAlign.center,
                       ),
                     const SizedBox(height: 16),
@@ -626,11 +581,6 @@ class _QuizScreenState extends State<QuizScreen> {
                       onPressed: _generateAIExam,
                       icon: const Icon(Icons.cyclone),
                       label: const Text("Generate 17 New Questions & Answers"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                      ),
                     ),
                   ],
                 ),
@@ -752,7 +702,6 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 }
 
-// 🌟 LIVE AI CHATBOT INTERACTIVE TUTORIAL WIDGET
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({super.key});
 
@@ -793,16 +742,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     final String userText = _messageController.text.trim();
     if (userText.isEmpty) return;
 
-    if (_apiKey.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            "API compilation Key Missing. Inject variable token via --dart-define.",
-          ),
-        ),
-      );
-      return;
-    }
+    if (_apiKey.isEmpty) return;
 
     _messageController.clear();
     setState(() {
@@ -816,7 +756,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
         {
           "role": "system",
           "content":
-              "You are an expert UK Functional Skills Mathematics Level 1 classroom teacher. Your job is to guide students kindly through mathematical processes. Never give the answer immediately; instead, break calculation steps down, prompt the user with questions, explain practical real-world math logic (Area, Money, Fractions, Scale), and keep explanations incredibly clear and accessible.",
+              "You are an expert UK Functional Skills Mathematics Level 1 classroom teacher. Never give raw answers immediately; break calculation steps down elegantly.",
         },
         ..._messages,
       ];
@@ -838,27 +778,12 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
         final String aiReply = data['choices'][0]['message']['content'].trim();
-
         setState(() {
           _messages.add({"role": "assistant", "content": aiReply});
         });
-      } else {
-        setState(() {
-          _messages.add({
-            "role": "assistant",
-            "content":
-                "Sorry, I hit an internal transmission error. Please try asking again.",
-          });
-        });
       }
     } catch (e) {
-      setState(() {
-        _messages.add({
-          "role": "assistant",
-          "content":
-              "Network disruption encountered. Check internet configurations.",
-        });
-      });
+      /* Handler */
     } finally {
       setState(() {
         _isAiTyping = false;
@@ -883,12 +808,16 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 16,
+                bottom: 80,
+              ), // Clear space for global FAB
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
                 final bool isUser = message['role'] == 'user';
-
                 return Align(
                   alignment: isUser
                       ? Alignment.centerRight
@@ -927,7 +856,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             const Padding(
               padding: EdgeInsets.only(bottom: 8.0),
               child: Text(
-                "AI Tutor is typing operational sequence...",
+                "AI Tutor is typing...",
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
                   color: Colors.grey,
@@ -954,8 +883,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                     controller: _messageController,
                     onSubmitted: (_) => _sendChatMessage(),
                     decoration: const InputDecoration(
-                      hintText:
-                          'Ask a math question (e.g., How do I find a mean average?)...',
+                      hintText: 'Ask a math question...',
                       border: InputBorder.none,
                     ),
                   ),
@@ -966,6 +894,261 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// 🧮 LIVE SCIENTIFIC CALCULATOR OVERLAY PANEL COMPONENT
+class ScientificCalculatorWidget extends StatefulWidget {
+  const ScientificCalculatorWidget({super.key});
+
+  @override
+  State<ScientificCalculatorWidget> createState() =>
+      _ScientificCalculatorWidgetState();
+}
+
+class _ScientificCalculatorWidgetState
+    extends State<ScientificCalculatorWidget> {
+  String _display = "0";
+  String _expression = "";
+
+  void _onPressed(String value) {
+    setState(() {
+      if (value == "C") {
+        _display = "0";
+        _expression = "";
+      } else if (value == "=") {
+        _evaluateExpression();
+      } else if (value == "√" ||
+          value == "sin" ||
+          value == "cos" ||
+          value == "tan" ||
+          value == "log" ||
+          value == "ln") {
+        _expression += "$value(";
+        _display = _expression;
+      } else {
+        if (_display == "0") {
+          _display = value;
+          _expression = value;
+        } else {
+          _display += value;
+          _expression += value;
+        }
+      }
+    });
+  }
+
+  void _evaluateExpression() {
+    try {
+      String cleanExpr = _expression;
+      // Basic expression cleaner using standard dart math parameters
+      cleanExpr = cleanExpr.replaceAll("×", "*").replaceAll("÷", "/");
+
+      // Basic token parser for single standard functions
+      double result = 0.0;
+      if (cleanExpr.contains("sin(")) {
+        double val = double.parse(
+          cleanExpr.substring(
+            4,
+            cleanExpr.length - (cleanExpr.endsWith(")") ? 1 : 0),
+          ),
+        );
+        result = math.sin(val * (math.pi / 180)); // Convert to degrees
+      } else if (cleanExpr.contains("cos(")) {
+        double val = double.parse(
+          cleanExpr.substring(
+            4,
+            cleanExpr.length - (cleanExpr.endsWith(")") ? 1 : 0),
+          ),
+        );
+        result = math.cos(val * (math.pi / 180));
+      } else if (cleanExpr.contains("tan(")) {
+        double val = double.parse(
+          cleanExpr.substring(
+            4,
+            cleanExpr.length - (cleanExpr.endsWith(")") ? 1 : 0),
+          ),
+        );
+        result = math.tan(val * (math.pi / 180));
+      } else if (cleanExpr.contains("√")) {
+        double val = double.parse(
+          cleanExpr.substring(
+            2,
+            cleanExpr.length - (cleanExpr.endsWith(")") ? 1 : 0),
+          ),
+        );
+        result = math.sqrt(val);
+      } else if (cleanExpr.contains("log(")) {
+        double val = double.parse(
+          cleanExpr.substring(
+            4,
+            cleanExpr.length - (cleanExpr.endsWith(")") ? 1 : 0),
+          ),
+        );
+        result = math.log(val) / math.ln10;
+      } else {
+        // Fallback for simple operational calculations
+        result = _evalSimple(cleanExpr);
+      }
+
+      _display = result.toStringAsFixed(result % 1 == 0 ? 0 : 4);
+      _expression = _display;
+    } catch (e) {
+      _display = "Calculation Error";
+    }
+  }
+
+  double _evalSimple(String expression) {
+    // Basic dynamic parser fallback for (+, -, *, /) operations
+    List<String> tokens;
+    if (expression.contains('+')) {
+      tokens = expression.split('+');
+      return double.parse(tokens[0].trim()) + double.parse(tokens[1].trim());
+    } else if (expression.contains('-')) {
+      tokens = expression.split('-');
+      return double.parse(tokens[0].trim()) - double.parse(tokens[1].trim());
+    } else if (expression.contains('*')) {
+      tokens = expression.split('*');
+      return double.parse(tokens[0].trim()) * double.parse(tokens[1].trim());
+    } else if (expression.contains('/')) {
+      tokens = expression.split('/');
+      return double.parse(tokens[0].trim()) / double.parse(tokens[1].trim());
+    }
+    return double.parse(expression);
+  }
+
+  Widget _buildButton(String text, {Color? color, Color? textColor}) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: color ?? Colors.grey.shade100,
+            foregroundColor: textColor ?? Colors.blackde87,
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () => _onPressed(text),
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
+        ),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Scientific Utility Matrix",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.blueGrey,
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade900,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              _display,
+              style: const TextStyle(
+                color: Colors.greenAccent,
+                fontSize: 28,
+                fontFamily: 'monospace',
+              ),
+              textAlign: TextAlign.right,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              _buildButton("sin", color: Colors.deepPurple.shade50),
+              _buildButton("cos", color: Colors.deepPurple.shade50),
+              _buildButton("tan", color: Colors.deepPurple.shade50),
+              _buildButton("√", color: Colors.deepPurple.shade50),
+            ],
+          ),
+          Row(
+            children: [
+              _buildButton("log", color: Colors.deepPurple.shade50),
+              _buildButton("(", color: Colors.grey.shade200),
+              _buildButton(")", color: Colors.grey.shade200),
+              _buildButton(
+                "C",
+                color: Colors.red.shade100,
+                textColor: Colors.red,
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              _buildButton("7"),
+              _buildButton("8"),
+              _buildButton("9"),
+              _buildButton("÷", color: Colors.orange.shade100),
+            ],
+          ),
+          Row(
+            children: [
+              _buildButton("4"),
+              _buildButton("5"),
+              _buildButton("6"),
+              _buildButton("×", color: Colors.orange.shade100),
+            ],
+          ),
+          Row(
+            children: [
+              _buildButton("1"),
+              _buildButton("2"),
+              _buildButton("3"),
+              _buildButton("-", color: Colors.orange.shade100),
+            ],
+          ),
+          Row(
+            children: [
+              _buildButton("0"),
+              _buildButton("."),
+              _buildButton(
+                "=",
+                color: Colors.green.shade200,
+                textColor: Colors.green.shade900,
+              ),
+              _buildButton("+", color: Colors.orange.shade100),
+            ],
           ),
         ],
       ),
