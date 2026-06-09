@@ -1028,7 +1028,7 @@ class _ScientificCalculatorWidgetState
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: color ?? Colors.grey.shade100,
-            foregroundColor: textColor ?? Colors.blackde87,
+            foregroundColor: textColor ?? Colors.black87,
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
